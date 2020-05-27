@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+
+   <ul class="demo"></ul>
+
+   <script>
+      (function () {
+
+         const demo = document.querySelector('.demo')
+
+         const ajax = async () => {
+            let i = ''
+
+            const res = await fetch('https://newsapi.org/v2/top-headlines?country=br&category=general&apiKey=aac2fb56700348119c47b8fc345873b8')
+            const result = await res.json()
+
+            result.articles.map(item => {
+               i += `<li>${item.description}</li>`
+            })
+
+            demo.innerHTML = i
+         }
+
+         ajax()
+
+      })()
+   </script>
+</body>
+
+</html>
